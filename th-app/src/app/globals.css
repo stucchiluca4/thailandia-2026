@@ -1,0 +1,65 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --bg: #FBF7EF;
+  --surface: #FFFFFF;
+  --ink: #1E272E;
+  --ink2: #5C6B75;
+  --dim: #98A4AB;
+  --line: #ECE2CF;
+  --ocean-soft: #E7F3FD;
+  --tropic-soft: #E0F7F0;
+  --sunset-soft: #FFF1E3;
+  --glass: rgba(255, 255, 255, 0.6);
+  --glass-line: rgba(255, 255, 255, 0.75);
+  --safe-t: env(safe-area-inset-top, 0px);
+  --safe-b: env(safe-area-inset-bottom, 0px);
+}
+.dark {
+  --bg: #12191F;
+  --surface: #1E272E;
+  --ink: #F2EDE2;
+  --ink2: #AEBAC2;
+  --dim: #6C7A83;
+  --line: #2B3742;
+  --ocean-soft: #0E2B41;
+  --tropic-soft: #0B302A;
+  --sunset-soft: #3A2410;
+  --glass: rgba(30, 39, 46, 0.55);
+  --glass-line: rgba(255, 255, 255, 0.12);
+}
+
+* { -webkit-tap-highlight-color: transparent; }
+html { -webkit-text-size-adjust: 100%; }
+body {
+  background: var(--bg);
+  color: var(--ink);
+  font-family: -apple-system, BlinkMacSystemFont, 'SF Pro Display', 'SF Pro Text', 'Inter', 'Segoe UI', Roboto, sans-serif;
+  transition: background 0.3s, color 0.3s;
+  overscroll-behavior-y: none;
+}
+.no-scrollbar { scrollbar-width: none; }
+.no-scrollbar::-webkit-scrollbar { display: none; }
+
+.glass {
+  background: var(--glass);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid var(--glass-line);
+}
+
+@keyframes pulse-tropic {
+  0%, 100% { box-shadow: 0 0 0 4px rgba(0, 184, 148, 0.25); }
+  50% { box-shadow: 0 0 0 10px rgba(0, 184, 148, 0.06); }
+}
+.pulse-now { animation: pulse-tropic 2s infinite; }
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { animation: none !important; transition: none !important; }
+}
+
+/* Leaflet dark-mode popup fix */
+.dark .leaflet-popup-content-wrapper, .dark .leaflet-popup-tip { background: #1E272E; color: #F2EDE2; }
+.leaflet-popup-content { margin: 12px 14px; }
